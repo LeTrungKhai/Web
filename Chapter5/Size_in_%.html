@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Percentage Width</title>
+  <style>
+    #outer-div {
+      width: 600px;
+      background-color: #ddd;
+      text-align: center;
+      padding: 20px;
+    }
+
+    #inner-div {
+      width: 50%;              /* 50% của 600px = 300px */
+      background-color: #b0c4de;
+      text-align: center;
+      margin: 0 auto;           /* căn giữa ngang */
+      line-height: 50px;        /* chiều cao dòng */
+    }
+  </style>
+</head>
+<body>
+
+  <div id="outer-div">
+    I am outer-div → 600px
+    <div id="inner-div">
+      I am div with 50% ...
+    </div>
+  </div>
+
+</body>
+</html>

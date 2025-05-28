@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Calc Width Example - Bigger</title>
+  <style>
+    #outer-div {
+      width: 600px;
+      height: 200px;
+      background-color: #f0e68c;
+      text-align: center;
+      padding: 20px 0;
+      box-sizing: border-box;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    #inner-div {
+      width: calc(100% - 40px); /* 100% của outer-div trừ đi 40px */
+      height: 120px;
+      background-color: #87cefa;
+      text-align: center;
+      margin: 0 auto;
+      line-height: 120px;
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="outer-div">
+    Outer-div: 600px
+    <div id="inner-div">
+      Inner-div: 100% - 40px
+    </div>
+  </div>
+
+</body>
+</html>

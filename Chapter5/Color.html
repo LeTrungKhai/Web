@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Overlay Boxes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    #wrapper {
+      width: 200px;
+      height: 200px;
+      background: rgba(87, 76, 83, 0.9); /* Màu đen mờ */
+      position: absolute;
+      top: 50px;
+      left: 50px;
+      border: 2px solid black;
+    }
+
+    .opacity {
+      width: 200px;
+      height: 200px;
+      background: hsla(344, 73%, 52%, 0.5); /* Màu hồng mờ */
+      position: absolute;
+      top: 80px;
+      left: 80px;
+      color: white;
+      padding: 10px;
+      border: 2px solid black;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="wrapper"></div>
+  <div class="opacity">
+    Some white text<br>
+    Some white text<br>
+    Some white text<br>
+    Some white text
+  </div>
+
+</body>
+</html>
