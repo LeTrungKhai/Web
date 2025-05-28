@@ -1,0 +1,117 @@
+/* 🔹 RESET DEFAULT STYLES */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 🔹 BODY STYLES */
+body {
+  font-family: Arial, sans-serif;
+  background: #ffffff;
+  color: #e65100;
+  width: 90%;
+  margin: auto;
+  line-height: 1.6;
+}
+
+/* 🔹 ELEMENT STYLES (h1, h2, p) */
+h1, h2, p {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #e65100;
+}
+
+/* 🔹 CONTAINER STYLES */
+.container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* 🔹 HEADER STYLES */
+header {
+  background-color: #ff9800;
+  color: #ffffff;
+  text-align: center;
+  padding: 40px 0;
+  text-transform: uppercase;
+}
+
+/* 🔹 SECTION STYLES */
+section {
+  background: #ffffff;
+  margin: 20px 0;
+  padding: 20px;
+  border-left: 5px solid #ff9800;
+  border-radius: 8px;
+}
+
+/* 🔹 SECTION HEADER STYLES */
+section h2 {
+  color: #e65100;
+  font-size: 28px;
+  margin-bottom: 15px;
+}
+
+/* 🔹 BEFORE PSEUDO-ELEMENTS FOR SECTION HEADINGS */
+section h2::before {
+  content: "★ ";
+  color: #fb8c00;
+}
+
+/* 🔹 PROJECTS LIST STYLES */
+.projects ul li {
+  list-style: square inside;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+/* 🔹 ALTERNATING LIST ITEM COLORS */
+.projects ul li:nth-child(odd) {
+  color: #e65100;
+}
+.projects ul li:nth-child(even) {
+  color: #ffb74d;
+}
+
+/* 🔹 FIRST LETTER AND FIRST LINE STYLES IN ABOUT SECTION */
+.about p::first-letter {
+  font-size: 24px;
+  font-weight: bold;
+  color: #f57c00;
+}
+.about p::first-line {
+  color: #ff9800;
+}
+
+/* 🔹 HOVER EFFECT FOR LINKS */
+a:hover {
+  color: #ff5722;
+  text-decoration: underline;
+}
+
+/* 🔹 ICON STYLE IN CONTACT SECTION */
+.contact p i[class*="phone"] {
+  color: #1976d2;
+}
+
+/* 🔹 FOOTER STYLES */
+footer {
+  background-color: #e65100;
+  color: #ffffff;
+  text-align: center;
+  padding: 20px;
+  margin-top: 30px;
+}
+
+/* 🔹 FOOTER FIRST PARAGRAPH STYLES */
+footer p:first-of-type {
+  font-weight: bold;
+  font-size: 18px;
+  color: #fff3e0;
+}
+
+/* 🔹 CONTACT CONTAINER BORDER STYLES */
+.contact.container {
+  border-top: 3px solid #90caf9;
+}
