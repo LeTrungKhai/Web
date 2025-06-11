@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Demo Pikachu App</title>
+<link rel="stylesheet" href="styles.css" />
+<style>
+    
+  /* Reset chung */
+  * {
+    box-sizing: border-box;
+  }
+  body, html {
+    margin: 0; padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    background: #222;
+    color: #fff;
+  }
+
+  /* --- MÀN HÌNH 1 --- */
+  #screen1 {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+  /* Background chuyển động chéo vòng lặp vô hạn */
+  #screen1::before {
+    content: "";
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background-image: url('images/Bo-3-pikachu.png');
+    background-size: 150% 150%;
+    background-repeat: repeat;
+    animation: bgMoveDiagonal 30s linear infinite;
+    z-index: 0;
+  }
+  @keyframes bgMoveDiagonal {
+    0% { background-position: 100% 100%; }
+    100% { background-position: 0% 0%; }
+  }
+
+  /* Máy tính calculator */
+  #calculator {
+    position: relative;
+    background: #222;
+    border-radius: 15px;
+    width: 320px;
+    padding: 20px;
+    box-shadow: 0 0 20px #fcdc4d;
+    color: #fff;
+    user-select: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 10;
+  }
+  #display {
+    background: #444;
+    width: 100%;
+    height: 50px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-size: 28px;
+    text-align: right;
+    padding: 8px 12px;
+    box-sizing: border-box;
+    letter-spacing: 2px;
+    line-height: 34px;
+  }
+  #buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    width: 100%;
+  }
+  button {
+    background: #333;
+    border: none;
+    border-radius: 8px;
+    padding: 15px 0;
+    font-size: 22px;
+    color: #fcdc4d;
+    cursor: pointer;
+    box-shadow: 0 3px #999;
+    transition: background 0.2s, transform 0.1s;
+    user-select: none;
+  }
+  button:active {
+    box-shadow: none;
+    background: #ffdb4d;
+    color: #222;
+    transform: scale(0.95);
+  }
+  #clear {
+    background: #b33939;
+    color: white;
+  }
+  #clear:active {
+    background: #e74c3c;
+    color: white;
+  }
+  #enter {
+    grid-column: span 3;
+    background: #fcdc4d;
+    color: #222;
+    font-weight: bold;
+  }
+  #enter:active {
+    background: #ffd633;
+  }
+
+  /* --- MÀN HÌNH 2 --- */
+  #screen2 {
+    display: none;
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    background: #000;
+  }
+  /* Background slideshow full screen */
+  #bgScreen2 {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.6);
+    transition: background-image 1.5s ease-in-out;
+    z-index: 0;
+  }
+
+  /* Chữ "Pika Pika" chạy trên màn hình 2 */
+  #pikaText {
+    position: absolute;
+    top: 10%;
+    left: -200px;
+    font-size: 50px;
+    font-weight: bold;
+    color: #fcdc4d;
+    text-shadow: 2px 2px 5px #000;
+    white-space: nowrap;
+    z-index: 5;
+    user-select: none;
+    animation: movePikaText 12s linear infinite;
+  }
+  @keyframes movePikaText {
+    0% { left: -200px; opacity: 0; }
+    10% { opacity: 1; }
+    90% { left: calc(100% + 200px); opacity: 1; }
+    100% { left: calc(100% + 200px); opacity: 0; }
+  }
+
+  /* Nút quay lại */
+  #backBtn {
+    position: absolute;
+    top: 15px; left: 15px;
+    z-index: 10;
+    padding: 10px 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #b33939;
+    color: white;
+    box-shadow: 0 0 10px #b33939;
+    user-select: none;
+  }
+  #backBtn:hover {
+    background-color: #e74c3c;
+  }
+
+  /* Container ảnh Pikachu */
+  #pikachuContainer {
+    position: relative;
+    z-index: 2;
+    width: 90vw;
+    max-width: 900px;
+    height: 70vh;
+    margin: 60px auto 0;
+  }
+
+  /* 9 ảnh Pikachu */
+  #pikachuContainer img {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    border-radius: 15px;
+    box-shadow: 0 0 15px #fcdc4d;
+    transition: transform 2s ease-in-out;
+  }
+
+  /* Nút chọn hình */
+  #shapeSelect {
+    position: relative;
+    z-index: 3;
+    width: 90vw;
+    max-width: 900px;
+    margin: 20px auto 40px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+  }
+  #shapeSelect button {
+    padding: 10px 22px;
+    font-weight: bold;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    background-color: #fcdc4d;
+    color: #222;
+    box-shadow: 0 0 15px #fcdc4d;
+    user-select: none;
+    transition: background-color 0.3s;
+  }
+  #shapeSelect button:hover {
+    background-color: #ffd633;
+  }
+</style>
+</head>
+<body>
+
+<!-- Màn hình 1 -->
+<div id="screen1">
+  <div id="calculator">
+    <div id="display"></div>
+    <div id="buttons">
+      <!-- Số 1 đến 9 theo thứ tự chuẩn -->
+      <button data-num="1">1</button>
+      <button data-num="2">2</button>
+      <button data-num="3">3</button>
+      <button data-num="4">4</button>
+      <button data-num="5">5</button>
+      <button data-num="6">6</button>
+      <button data-num="7">7</button>
+      <button data-num="8">8</button>
+      <button data-num="9">9</button>
+      <!-- Clear và 0 -->
+      <button id="clear">C</button>
+      <button data-num="0">0</button>
+      <!-- Enter -->
+      <button id="enter">OK</button>
+    </div>
+  </div>
+</div>
+
+<!-- Màn hình 2 -->
+<div id="screen2">
+  <div id="bgScreen2"></div>
+  <button id="backBtn">Quay lại</button>
+  <div id="pikachuContainer"></div>
+  <button id="motionToggle" title="Bật/tắt chuyển động">Chuyển động</button>
+  <div id="shapeSelect">
+    <button data-shape="square">Vuông</button>
+    <button data-shape="heart">Trái tim</button>
+    <button data-shape="circle">Tròn</button>
+    <button data-shape="diamond">Thoi</button>
+    <button data-shape="trapezoid">Thang</button>
+  </div>
+  <div id="pikaText">Pika Pika</div>
+</div>
+
+<script>
+  // --- MÀN HÌNH 1 ---
+  const memoryCodes = ['2811', '1703'];
+
+  const display = document.getElementById('display');
+  const buttons = document.querySelectorAll('#buttons button[data-num]');
+  const clearBtn = document.getElementById('clear');
+  const enterBtn = document.getElementById('enter');
+  const screen1 = document.getElementById('screen1');
+  const screen2 = document.getElementById('screen2');
+
+  let input = '';
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      if(input.length < 10) {
+        input += btn.getAttribute('data-num');
+        updateDisplay();
+      }
+    });
+  });
+  clearBtn.addEventListener('click', () => {
+    input = '';
+    updateDisplay();
+  });
+  function updateDisplay(){
+    display.textContent = input;
+  }
+  enterBtn.addEventListener('click', () => {
+    if(memoryCodes.includes(input)){
+      startScreen2();
+    } else {
+      alert('Nhập sai rồi kìa Pika Pika');
+      input = '';
+      updateDisplay();
+    }
+  });
+
+  // --- MÀN HÌNH 2 ---
+  const bgScreen2 = document.getElementById('bgScreen2');
+  const pikachuContainer = document.getElementById('pikachuContainer');
+  const shapeButtons = document.querySelectorAll('#shapeSelect button');
+  const backBtn = document.getElementById('backBtn');
+  const pikaText = document.getElementById('pikaText');
+
+  // Ảnh Pikachu
+  const pikachuImgs = [
+    'images/Pikachu1.png',
+    'images/Pikachu2.png',
+    'images/Pikachu3.png',
+    'images/pikachu4.png',
+    'images/Pikachu5.png',
+    'images/Pikachu6.png',
+    'images/Pikachu7.png',
+    'images/Pikachu8.png',
+    'images/Pikachu9.png'
+  ];
+
+  let bgIndex = 0;
+  let bgInterval;
+
+  // random trong khoảng
+  function randRange(min,max){
+    return Math.floor(Math.random()*(max-min+1))+min;
+  }
+
+  // Chạy slideshow background, mỗi 6s đổi ảnh, nối tiếp ngẫu nhiên
+  function startBgSlideshow(){
+    bgIndex = randRange(0, pikachuImgs.length-1);
+    setBgScreen2(pikachuImgs[bgIndex]);
+
+    bgInterval = setInterval(()=>{
+      let nextIndex;
+      do {
+        nextIndex = randRange(0, pikachuImgs.length-1);
+      } while(nextIndex === bgIndex);
+      bgIndex = nextIndex;
+      setBgScreen2(pikachuImgs[bgIndex]);
+    }, 6000);
+  }
+
+  function setBgScreen2(url){
+    bgScreen2.style.backgroundImage = `url(${url})`;
+  }
+
+  // Hàm hiển thị 9 ảnh Pikachu theo hình dạng
+  function showShape(shape){
+    pikachuContainer.innerHTML = '';
+    // Tạo 9 img
+    for(let i=0; i<9; i++){
+      const img = document.createElement('img');
+      img.src = pikachuImgs[i];
+      pikachuContainer.appendChild(img);
+    }
+    const imgs = pikachuContainer.querySelectorAll('img');
+
+    // Lấy kích thước container để tính toán vị trí
+    const containerWidth = pikachuContainer.clientWidth;
+    const containerHeight = pikachuContainer.clientHeight;
+
+    // Tính vị trí tùy theo hình dạng
+    // Mỗi ảnh sẽ có top, left tính theo phần trăm container (càng chính xác càng tốt)
+    let positions = [];
+
+    switch(shape){
+      case 'square':
+        // 3x3 grid vuông đều nhau
+        for(let row=0; row<3; row++){
+          for(let col=0; col<3; col++){
+            positions.push({
+              left: (col + 0.5) / 3 * containerWidth - 40, // 40 là nửa chiều rộng ảnh 80px
+              top: (row + 0.5) / 3 * containerHeight - 40
+            });
+          }
+        }
+        break;
+
+      case 'heart':
+        // Hình trái tim xấp xỉ, vị trí top-left % trong container
+        positions = [
+          {left: 0.5, top: 0.25},
+          {left: 0.25, top: 0.35},
+          {left: 0.75, top: 0.35},
+          {left: 0.15, top: 0.55},
+          {left: 0.85, top: 0.55},
+          {left: 0.35, top: 0.7},
+          {left: 0.65, top: 0.7},
+          {left: 0.5, top: 0.85},
+          {left: 0.5, top: 0.55}
+        ];
+        // chuyển sang px
+        positions = positions.map(pos=>({
+          left: pos.left * containerWidth - 40,
+          top: pos.top * containerHeight - 40
+        }));
+        break;
+
+      case 'circle':
+        // 9 điểm xếp theo vòng tròn (tâm giữa, bán kính 40% chiều nhỏ hơn container)
+        const centerX = containerWidth / 2;
+        const centerY = containerHeight / 2;
+        const radius = Math.min(containerWidth, containerHeight) * 0.4;
+        for(let i=0; i<9; i++){
+          const angle = (2 * Math.PI / 9) * i - Math.PI/2; // bắt đầu từ trên cùng
+          positions.push({
+            left: centerX + radius * Math.cos(angle) - 40,
+            top: centerY + radius * Math.sin(angle) - 40
+          });
+        }
+        break;
+
+      case 'diamond':
+        // hình thoi - 9 điểm
+        positions = [
+          {left: 0.5, top: 0.1},
+          {left: 0.35, top: 0.3},
+          {left: 0.65, top: 0.3},
+          {left: 0.2, top: 0.5},
+          {left: 0.5, top: 0.5},
+          {left: 0.8, top: 0.5},
+          {left: 0.35, top: 0.7},
+          {left: 0.65, top: 0.7},
+          {left: 0.5, top: 0.9}
+        ];
+        positions = positions.map(pos=>({
+          left: pos.left * containerWidth - 40,
+          top: pos.top * containerHeight - 40
+        }));
+        break;
+
+      case 'trapezoid':
+        // hình thang
+        positions = [
+          {left: 0.3, top: 0.15},
+          {left: 0.4, top: 0.15},
+          {left: 0.6, top: 0.15},
+          {left: 0.7, top: 0.15},
+          {left: 0.2, top: 0.45},
+          {left: 0.8, top: 0.45},
+          {left: 0.15, top: 0.75},
+          {left: 0.85, top: 0.75},
+          {left: 0.5, top: 0.75}
+        ];
+        positions = positions.map(pos=>({
+          left: pos.left * containerWidth - 40,
+          top: pos.top * containerHeight - 40
+        }));
+        break;
+    }
+
+    // Gán vị trí từng ảnh
+    imgs.forEach((img, i) => {
+      const pos = positions[i];
+      img.style.left = pos.left + 'px';
+      img.style.top = pos.top + 'px';
+      // Thêm hiệu ứng chuyển động chậm - làm chuyển động nhẹ nhàng lắc lư
+      const delay = i * 0.5;
+      img.style.animation = `slowMove 6s ease-in-out infinite`;
+      img.style.animationDelay = delay + 's';
+    });
+  }
+
+  // Animation lắc nhẹ ảnh Pikachu nhỏ
+  const style = document.createElement('style');
+  style.textContent = `
+  @keyframes slowMove {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(5px, 5px); }
+  }
+  `;
+  document.head.appendChild(style);
+
+  // Chọn hình mặc định
+  let currentShape = 'square';
+
+  shapeButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      currentShape = btn.getAttribute('data-shape');
+      showShape(currentShape);
+    });
+  });
+
+  // Bắt đầu màn 2
+  function startScreen2(){
+    screen1.style.display = 'none';
+    screen2.style.display = 'block';
+    startBgSlideshow();
+    showShape(currentShape);
+  }
+
+  // Quay lại màn 1
+  backBtn.addEventListener('click', () => {
+    clearInterval(bgInterval);
+    screen2.style.display = 'none';
+    screen1.style.display = 'flex';
+    input = '';
+    updateDisplay();
+  });
+const motionToggle = document.getElementById('motionToggle');
+let motionOn = false; // trạng thái chuyển động mặc định TẮT
+
+motionToggle.addEventListener('click', () => {
+  motionOn = !motionOn;
+  motionToggle.classList.toggle('active', motionOn);
+  updateAnimationForShape(currentShape);
+});
+
+// Hàm cập nhật animation cho từng hình theo trạng thái motionOn
+function updateAnimationForShape(shape) {
+  const imgs = pikachuContainer.querySelectorAll('img');
+  imgs.forEach((img, i) => {
+    img.style.animation = 'none'; // reset animation
+    img.style.animationDelay = '';
+
+    if (!motionOn) {
+      // Nếu motion off thì chỉ hiện hình dạng, không quay, không lắc
+      img.style.animation = 'none';
+      return;
+    }
+
+    // motion on - gán animation quay tương ứng
+    let animName = '';
+    let delay = i * 0.5;
+
+    switch(shape) {
+      case 'square':
+        animName = 'rotateSquare 6s linear infinite';
+        break;
+      case 'circle':
+        animName = 'rotateCircle 6s linear infinite';
+        break;
+      case 'heart':
+        animName = 'rotateHeart 6s linear infinite';
+        break;
+      case 'diamond':
+        animName = 'rotateDiamond 6s linear infinite';
+        break;
+      case 'trapezoid':
+        animName = 'rotateTrapezoid 6s linear infinite';
+        break;
+      default:
+        animName = 'slowMove 6s ease-in-out infinite';
+    }
+
+    img.style.animation = animName;
+    img.style.animationDelay = delay + 's';
+  });
+}
+
+// Sửa hàm showShape để gọi updateAnimationForShape luôn
+function showShape(shape){
+  pikachuContainer.innerHTML = '';
+  // Tạo 9 img
+  for(let i=0; i<9; i++){
+    const img = document.createElement('img');
+    img.src = pikachuImgs[i];
+    pikachuContainer.appendChild(img);
+  }
+  const imgs = pikachuContainer.querySelectorAll('img');
+
+  // Lấy kích thước container để tính toán vị trí
+  const containerWidth = pikachuContainer.clientWidth;
+  const containerHeight = pikachuContainer.clientHeight;
+
+  let positions = [];
+
+  switch(shape){
+    case 'square':
+      for(let row=0; row<3; row++){
+        for(let col=0; col<3; col++){
+          positions.push({
+            left: (col + 0.5) / 3 * containerWidth - 40,
+            top: (row + 0.5) / 3 * containerHeight - 40
+          });
+        }
+      }
+      break;
+
+    case 'heart':
+      // Cập nhật lại tọa độ để hình trái tim cân đối hơn
+      positions = [
+        {left: 0.5, top: 0.15},
+        {left: 0.38, top: 0.3},
+        {left: 0.62, top: 0.3},
+        {left: 0.28, top: 0.5},
+        {left: 0.72, top: 0.5},
+        {left: 0.4, top: 0.7},
+        {left: 0.6, top: 0.7},
+        {left: 0.5, top: 0.85},
+        {left: 0.5, top: 0.5}
+      ];
+      positions = positions.map(pos => ({
+        left: pos.left * containerWidth - 40,
+        top: pos.top * containerHeight - 40
+      }));
+      break;
+
+    case 'circle':
+      const centerX = containerWidth / 2;
+      const centerY = containerHeight / 2;
+      const radius = Math.min(containerWidth, containerHeight) * 0.4;
+      for(let i=0; i<9; i++){
+        const angle = (2 * Math.PI / 9) * i - Math.PI/2;
+        positions.push({
+          left: centerX + radius * Math.cos(angle) - 40,
+          top: centerY + radius * Math.sin(angle) - 40
+        });
+      }
+      break;
+
+    case 'diamond':
+      positions = [
+        {left: 0.5, top: 0.1},
+        {left: 0.35, top: 0.3},
+        {left: 0.65, top: 0.3},
+        {left: 0.2, top: 0.5},
+        {left: 0.5, top: 0.5},
+        {left: 0.8, top: 0.5},
+        {left: 0.35, top: 0.7},
+        {left: 0.65, top: 0.7},
+        {left: 0.5, top: 0.9}
+      ];
+      positions = positions.map(pos => ({
+        left: pos.left * containerWidth - 40,
+        top: pos.top * containerHeight - 40
+      }));
+      break;
+
+    case 'trapezoid':
+      positions = [
+        {left: 0.3, top: 0.15},
+        {left: 0.4, top: 0.15},
+        {left: 0.6, top: 0.15},
+        {left: 0.7, top: 0.15},
+        {left: 0.2, top: 0.45},
+        {left: 0.8, top: 0.45},
+        {left: 0.15, top: 0.75},
+        {left: 0.85, top: 0.75},
+        {left: 0.5, top: 0.75}
+      ];
+      positions = positions.map(pos => ({
+        left: pos.left * containerWidth - 40,
+        top: pos.top * containerHeight - 40
+      }));
+      break;
+  }
+
+  imgs.forEach((img, i) => {
+    const pos = positions[i];
+    img.style.left = pos.left + 'px';
+    img.style.top = pos.top + 'px';
+    img.style.position = 'absolute';
+    img.style.width = '80px';
+    img.style.height = '80px';
+    img.style.borderRadius = '15px';
+    img.style.boxShadow = '0 0 15px #fcdc4d';
+    img.style.cursor = 'pointer';
+  });
+
+  updateAnimationForShape(shape);
+
+  // Thêm sự kiện phóng to thu nhỏ khi click ảnh
+  imgs.forEach(img => {
+    img.onclick = () => {
+      if(img.classList.contains('enlarged')) {
+        img.classList.remove('enlarged');
+      } else {
+        // thu nhỏ ảnh đã phóng to trước đó
+        const enlarged = pikachuContainer.querySelector('img.enlarged');
+        if(enlarged) enlarged.classList.remove('enlarged');
+        img.classList.add('enlarged');
+      }
+    };
+  });
+}
+
+</script>
+<script src="script.js"></script>
+</body>
+</html>

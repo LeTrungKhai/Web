@@ -1,0 +1,82 @@
+/* Animation quay vuông */
+@keyframes rotateSquare {
+  0% { transform: rotate(0deg) translate(5px, 5px) rotate(0deg); }
+  50% { transform: rotate(90deg) translate(5px, 5px) rotate(-90deg); }
+  100% { transform: rotate(360deg) translate(5px, 5px) rotate(-360deg); }
+}
+
+/* Animation quay tròn */
+@keyframes rotateCircle {
+  0% { transform: rotate(0deg) translate(5px, 0) rotate(0deg); }
+  50% { transform: rotate(180deg) translate(5px, 0) rotate(-180deg); }
+  100% { transform: rotate(360deg) translate(5px, 0) rotate(-360deg); }
+}
+
+/* Animation quay diamond */
+@keyframes rotateDiamond {
+  0% { transform: rotate(0deg) translate(7px, 7px) rotate(0deg); }
+  50% { transform: rotate(180deg) translate(7px, 7px) rotate(-180deg); }
+  100% { transform: rotate(360deg) translate(7px, 7px) rotate(-360deg); }
+}
+
+/* Animation quay trapezoid */
+@keyframes rotateTrapezoid {
+  0% { transform: rotate(0deg) translate(6px, 4px) rotate(0deg); }
+  50% { transform: rotate(180deg) translate(6px, 4px) rotate(-180deg); }
+  100% { transform: rotate(360deg) translate(6px, 4px) rotate(-360deg); }
+}
+
+/* Animation quay heart */
+@keyframes rotateHeart {
+  0% { transform: rotate(0deg) translate(4px, 7px) rotate(0deg); }
+  50% { transform: rotate(180deg) translate(4px, 7px) rotate(-180deg); }
+  100% { transform: rotate(360deg) translate(4px, 7px) rotate(-360deg); }
+}
+
+/* Animation lắc nhẹ mặc định */
+@keyframes slowMove {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(5px, 5px); }
+}
+
+/* Phóng to khi nhấn ảnh */
+#pikachuContainer img.enlarged {
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  width: 300px !important;
+  height: 300px !important;
+  transform: translate(-50%, -50%) !important;
+  z-index: 9999 !important;
+  box-shadow: 0 0 40px #fcdc4d;
+  cursor: zoom-out;
+  border-radius: 20px !important;
+}
+
+/* Nút chuyển động */
+#motionToggle {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  z-index: 20;
+  padding: 10px 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #fcdc4d;
+  color: #222;
+  box-shadow: 0 0 15px #fcdc4d;
+  user-select: none;
+  transition: background-color 0.3s;
+}
+#motionToggle:hover {
+  background-color: #ffd633;
+}
+
+/* Nút chuyển động trạng thái ON */
+#motionToggle.active {
+  background-color: #b33939;
+  color: white;
+  box-shadow: 0 0 20px #b33939;
+}
