@@ -18,6 +18,7 @@
         <img src="https://cdn-icons-png.flaticon.com/512/5900/5900287.png" alt="Logo"/>
         <span>Pikachu</span>
       </div>
+       <button id="loginBtn">Login</button>
       <ul>
         <li><a href="#">Home</a></li>
         <li><a href="#about">About Us</a></li>
@@ -25,7 +26,7 @@
         <li><a href="#testimonials">Testimonials</a></li>
         <li><a href="#blog">Blog</a></li>
         <li><a href="#contact">Contact</a></li>
-      </ul>
+      </ul>        
     </nav>
   </header>
 
@@ -143,5 +144,34 @@
     </div>
   </footer>
 
+<div id="loginModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('loginModal')">&times;</span>
+    <h2>Login</h2>
+    <form>
+      <input type="email" placeholder="Email" required />
+      <input type="password" placeholder="Password" required />
+      <button type="submit">Login</button>
+      <p>Don't have an account? <a href="#" onclick="switchModal('loginModal', 'signupModal')">Sign up here</a></p>
+    </form>
+  </div>
+</div>
+
+<div id="signupModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('signupModal')">&times;</span>
+    <h2>Sign Up</h2>
+    <form>
+      <input type="text" placeholder="Username" required />
+      <input type="email" placeholder="Email" required />
+      <input type="password" placeholder="Password" required />
+      <input type="password" placeholder="Confirm Password" required />
+      <button type="submit">Sign Up</button>
+      <p>Already have an account? <a href="#" onclick="switchModal('signupModal', 'loginModal')">Login here</a></p>
+    </form>
+  </div>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
