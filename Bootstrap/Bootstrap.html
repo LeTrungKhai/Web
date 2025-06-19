@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Bootstrap Website</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <style>
+    .vh-80 { height: 80vh; }
+    .hero {
+      background: linear-gradient(to right, #007bff, #00c6ff);
+      color: white;
+      padding: 80px 0;
+      text-align: center;
+    }
+    .modal-header {
+      background-color: #343a40;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="#"><i class="bi bi-lightning-fill"></i> MySite</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link active" href="#"><i class="bi bi-house-door-fill"></i> Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about"><i class="bi bi-info-circle-fill"></i> About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#products"><i class="bi bi-box-seam"></i> Products</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact"><i class="bi bi-envelope-fill"></i> Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <h1 class="display-4"><i class="bi bi-stars"></i> Welcome to My Bootstrap Website</h1>
+    <p class="lead">Clean. Responsive. Beautiful.</p>
+    <button class="btn btn-light btn-lg mt-3" data-bs-toggle="modal" data-bs-target="#registerModal">
+      <i class="bi bi-person-plus-fill"></i> Sign In
+    </button>
+  </div>
+</header>
+
+<!-- ABOUT -->
+<section id="about" class="py-5 bg-light">
+  <div class="container">
+    <h2 class="text-center mb-4"><i class="bi bi-person-lines-fill"></i> About Us</h2>
+    <p class="text-center">We are a passionate team creating responsive and modern websites using Bootstrap.</p>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="products" class="py-5">
+  <div class="container">
+    <h2 class="text-center mb-4"><i class="bi bi-box-fill"></i> Our Products</h2>
+    <div class="row g-4">
+      <!-- Card 1 -->
+      <div class="col-md-4">
+        <div class="card">
+          <img src="C:\\Users\\Khai\\Pictures\\Screenshots\\1234.jpg" class="card-img-top" alt="Funny Cat">
+          <div class="card-body">
+            <h5 class="card-title">Funny Cat</h5>
+            <p class="card-text">This is an amazing product that you’ll love.</p>
+            <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalProduct1">Buy Now</a>
+          </div>
+        </div>
+      </div>
+      <!-- Card 2 -->
+      <div class="col-md-4">
+        <div class="card">
+          <img src="C:\\Users\\Khai\\Pictures\\Screenshots\\Forest.png" class="card-img-top" alt="Trees National">
+          <div class="card-body">
+            <h5 class="card-title">Trees National</h5>
+            <p class="card-text">This product is also pretty great!</p>
+            <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalProduct2">Buy Now</a>
+          </div>
+        </div>
+      </div>
+      <!-- Card 3 -->
+      <div class="col-md-4">
+        <div class="card">
+          <img src="C:\\Users\\Khai\\Pictures\\Screenshots\\Screenshot 2025-05-28 085237.png" class="card-img-top" alt="Pikachu">
+          <div class="card-body">
+            <h5 class="card-title">Pikachu</h5>
+            <p class="card-text">You’ll be amazed by what this can do.</p>
+            <a href="#" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalProduct3">Buy Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="py-5 bg-light">
+  <div class="container">
+    <h2 class="text-center mb-4"><i class="bi bi-chat-left-text-fill"></i> Contact Us</h2>
+    <form>
+      <div class="mb-3">
+        <label for="name" class="form-label"><i class="bi bi-person-fill"></i> Your Name</label>
+        <input type="text" class="form-control" id="name" placeholder="Enter your name">
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label"><i class="bi bi-envelope"></i> Your Email</label>
+        <input type="email" class="form-control" id="email" placeholder="Enter your email">
+      </div>
+      <div class="mb-3">
+        <label for="message" class="form-label"><i class="bi bi-chat-dots"></i> Your Message</label>
+        <textarea class="form-control" id="message" rows="4" placeholder="Enter your message"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary"><i class="bi bi-send-fill"></i> Send</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-dark text-white text-center py-3 mt-5">
+  <p class="mb-0"><i class="bi bi-c-circle-fill"></i> 2025 My Bootstrap Website. All rights reserved.</p>
+</footer>
+
+<!-- MODALS FOR PRODUCTS -->
+<div class="modal fade" id="modalProduct1" tabindex="-1" aria-labelledby="modalProduct1Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-dark text-white">
+        <h5 class="modal-title" id="modalProduct1Label">Funny Cat</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Price:</strong> $29.99</p>
+        <p>This is an amazing product that you’ll love.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-success">Add to Cart</button>
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="modalProduct2" tabindex="-1" aria-labelledby="modalProduct2Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-dark text-white">
+        <h5 class="modal-title" id="modalProduct2Label">Trees National</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Price:</strong> $45.00</p>
+        <p>This product is also pretty great!</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-success">Add to Cart</button>
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="modalProduct3" tabindex="-1" aria-labelledby="modalProduct3Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-dark text-white">
+        <h5 class="modal-title" id="modalProduct3Label">Pikachu</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Price:</strong> $59.00</p>
+        <p>You’ll be amazed by what this can do.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-success">Add to Cart</button>
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL REGISTER FORM -->
+<div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="registerModalLabel"><i class="bi bi-person-plus-fill"></i> User Registration</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body bg-light">
+        <form>
+          <div class="mb-3">
+            <label for="firstName" class="form-label">First name</label>
+            <input type="text" class="form-control" id="firstName" placeholder="First name" />
+          </div>
+          <div class="mb-3">
+            <label for="lastName" class="form-label">Last name</label>
+            <input type="text" class="form-control" id="lastName" placeholder="Last name" />
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="email" placeholder="Email address" />
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="Input password" />
+          </div>
+          <div class="mb-3">
+            <label for="confirm" class="form-label">Confirmation</label>
+            <input type="password" class="form-control" id="confirm" placeholder="Input confirm" />
+          </div>
+          <div class="d-grid">
+            <button type="submit" class="btn btn-info text-white"><i class="bi bi-check-circle-fill"></i> Register</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  document.querySelectorAll('.btn-success').forEach(btn => {
+    if (btn.innerText === 'Add to Cart') {
+      btn.addEventListener('click', function () {
+        alert("Đã thêm sản phẩm vào giỏ hàng!");
+      });
+    }
+  });
+</script>
+</body>
+</html>
